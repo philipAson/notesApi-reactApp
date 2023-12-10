@@ -1,16 +1,27 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { actions as loggedinActions } from "../features/loggedIn";
+import { actions as userActions } from "../features/user";
 
 const Login = () => {
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const [loginMessage, setLoginMessage] = useState("");
 
+  const dispatch = useDispatch();
+
+  const login = () => dispatch(loggedinActions.login());
+
+  const handleUser = (userNameJson, userTokenJson) => {
+    dispatch(userActions.setUsername(userNameJson));
+    dispatch(userActions.setToken(userTokenJson));
+  };
+
   const loginRequest = async () => {
     const url = `https://pcd9bqvn13.execute-api.eu-north-1.amazonaws.com/auth/login`;
 
     try {
       const response = await fetch(url, {
-        
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -29,7 +40,10 @@ const Login = () => {
       const responseJson = await response.json();
 
       if (response.status === 200) {
-        setLoginMessage("Successfully logged in!");
+        setLoginMessage(`Successfully logged in!`);
+
+        handleUser(responseJson.user.username, responseJson.token);
+        login();
       } else {
         setLoginMessage(`Errooor: ${responseJson.message}`);
       }
