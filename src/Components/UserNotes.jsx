@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
+import NoteListObject from './NoteListObject';
 
 const UserNotes = () => {
 
@@ -44,6 +45,7 @@ const UserNotes = () => {
 
   return (
     <div className='list' id='userNotesList'>
+        <NoteListObject/>
         {notes.map((note, index) => 
             <p key={index}>{note.title}</p>    
         )}
