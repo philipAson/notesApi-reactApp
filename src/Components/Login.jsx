@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { actions as loggedinActions } from "../features/loggedIn";
 import { actions as userActions } from "../features/user";
 
+
 const Login = () => {
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
@@ -32,7 +33,9 @@ const Login = () => {
         }),
       });
 
-      if (!response.ok) {
+      if (response.status === 400) {
+        setLoginMessage("wrong username or password")
+      } else if (!response.ok) {
         setLoginMessage(`Err: server returned status ${response.status}`);
         return;
       }
@@ -51,6 +54,9 @@ const Login = () => {
       setLoginMessage(`Erreeer: ${error.message}`);
     }
   };
+
+
+  
   return (
     <div name="loginPage" id="loginPage">
       <h1>Notes app</h1>

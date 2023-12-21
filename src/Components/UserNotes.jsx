@@ -45,12 +45,9 @@ const UserNotes = () => {
 
   return (
     <div className='list' id='userNotesList'>
-        <NoteListObject/>
         {notes.map((note, index) => 
-            <p key={index}>{note.title}</p>    
+            <NoteListObject note ={note} key = {index}/>   
         )}
-        Token: <br/> <br/>
-        {userToken}
     </div>
   )
 }

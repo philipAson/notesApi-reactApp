@@ -1,24 +1,32 @@
-import React from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { actions } from '../features/loggedIn';
-import UserNotes from './UserNotes';
-
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { actions } from "../features/loggedIn";
+import UserNotes from "./UserNotes";
+import { RiAddLine } from "react-icons/ri";
+import { Link } from "react-router-dom";
 
 const UserPage = (props) => {
-
-    const dispatch = useDispatch();
-    const logout = () => dispatch(actions.logout());
-    const username = useSelector(state => state.user.username);
+  const dispatch = useDispatch();
+  const logout = () => dispatch(actions.logout());
+  const username = useSelector((state) => state.user.username);
 
   return (
-    
-    <div id='userPage'>
-        <h1>Welcome, {username}</h1>
-        <UserNotes/>
-        <button id='logoutButton' onClick={logout}>logout</button>
-    </div>
-    // <div>welcome {props.user.name}</div>
-  )
-}
+    <div id="userPage">
+      <h1>Welcome, {username}</h1>
 
-export default UserPage
+      <Link to="/NewNote">
+        <button>
+          <RiAddLine />
+        </button>
+      </Link>
+
+      <UserNotes />
+
+      <button id="logoutButton" onClick={logout}>
+        logout
+      </button>
+    </div>
+  );
+};
+
+export default UserPage;

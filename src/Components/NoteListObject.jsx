@@ -5,8 +5,8 @@ const NoteListObject = (props) => {
   return (
     <div className="listObject" id="noteListObject">
       <div className="listObjectInfo">
-        <h3>Title:</h3>
-        <p>created at:</p>
+        <h3>Title: {props.note.title}</h3>
+        <p>created at: {props.note.date}</p>
       </div>
       <div className="listObjectButtons">
         <button><RiEditFill/></button>

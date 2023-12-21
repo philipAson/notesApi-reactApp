@@ -19,8 +19,11 @@
     justify-content:space-evenly;
 }
 
+/* NoteListObject */
+
 .listObject {
     /* border: wheat 2px solid; */
+    margin: 1em;
     padding: 1rem;
     border-radius: 8px;
     background-color: gray;
@@ -47,4 +50,24 @@
     justify-content: center;
     height: 100%;
     margin: 0;
+}
+
+/* CreateNewNote */
+
+.createNewNote {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+#new-note-title {
+    width: 300px;
+    height: 2em;
+    font-size: large;
+    font-weight: bold;
+}
+
+#new-note-text {
+    width: 500px;
+    height: 600px;
 }
