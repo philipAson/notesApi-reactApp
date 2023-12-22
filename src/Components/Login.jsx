@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import SignUp from './SignUp';
 import { useDispatch } from "react-redux";
 import { actions as loggedinActions } from "../features/loggedIn";
 import { actions as userActions } from "../features/user";
@@ -8,10 +9,14 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const [loginMessage, setLoginMessage] = useState("");
+  const [lightboxDisplay, setLightboxDisplay] = useState("");
 
   const dispatch = useDispatch();
 
   const login = () => dispatch(loggedinActions.login());
+  const openSignUpLightBox = () => {
+    setLightboxDisplay(true);
+  };
 
   const handleUser = (userNameJson, userTokenJson) => {
     dispatch(userActions.setUsername(userNameJson));
@@ -59,6 +64,11 @@ const Login = () => {
   
   return (
     <div name="loginPage" id="loginPage">
+      {lightboxDisplay ? (
+        <SignUp/>
+      ) : (
+        ""
+      )}
       <h1>Notes app</h1>
 
       <h2>{loginMessage}</h2>
@@ -77,7 +87,7 @@ const Login = () => {
 
       <div name="optionButtons" id="optionButtons">
         <button onClick={loginRequest}>login</button>
-        <button>create account</button>
+        <button onClick={openSignUpLightBox}>create account</button>
         <div>{password}</div>
         <div>{username}</div>
       </div>
