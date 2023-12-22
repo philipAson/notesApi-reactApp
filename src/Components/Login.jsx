@@ -9,7 +9,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const [loginMessage, setLoginMessage] = useState("");
-  const [lightboxDisplay, setLightboxDisplay] = useState("");
+  const [lightboxDisplay, setLightboxDisplay] = useState(false);
 
   const dispatch = useDispatch();
 
